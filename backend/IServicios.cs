@@ -9,5 +9,6 @@ namespace backend
     public interface IServicios
     {
         List<Cliente> GetClientes(string nombre);
+        bool IniciarSesion(string userName, string password);
     }
 }

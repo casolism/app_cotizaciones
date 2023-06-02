@@ -10,23 +10,28 @@ using System.Windows.Forms;
 
 namespace Cotizaciones
 {
-    public partial class NuevoProyecto : Form
-    {
-        public NuevoProyecto()
-        {
-            InitializeComponent();
-        }
+	public partial class NuevoProyecto : Form
+	{
+		public NuevoProyecto()
+		{
+			InitializeComponent();
+		}
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
+		private void textBox2_TextChanged(object sender, EventArgs e)
+		{
 
-        }
+		}
 
-        private void btnGuardarProyecto_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Se ha agregado el proyecto","Atención",MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation);
-            this.Close();
-        }
-    }
+		private void btnGuardarProyecto_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("Se ha agregado el proyecto", "Atención", MessageBoxButtons.OK,
+				MessageBoxIcon.Exclamation);
+			this.Close();
+		}
+
+		private void NuevoProyecto_Load(object sender, EventArgs e)
+		{
+
+		}
+	}
 }

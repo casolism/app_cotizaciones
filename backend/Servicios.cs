@@ -34,5 +34,15 @@ namespace backend
             });
             return list.FindAll(x=>x.Empresa.ToUpper().Contains(nombre.ToUpper()));
         }
+
+        public bool IniciarSesion(string userName, string password)
+        {
+            if (userName == "Admin" || password == "1234")
+            {
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }

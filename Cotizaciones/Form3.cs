@@ -10,20 +10,11 @@ using System.Windows.Forms;
 
 namespace Cotizaciones
 {
-	public partial class Clientes : Form
+	public partial class Form3 : Form
 	{
-		public Clientes()
+		public Form3()
 		{
 			InitializeComponent();
-		}
-
-		private void textBox1_TextChanged(object sender, EventArgs e)
-		{
-		}
-
-		private void Clientes_Load(object sender, EventArgs e)
-		{
-
 		}
 	}
 }
