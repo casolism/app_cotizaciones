@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace backend
+namespace backend.Dominio
 {
     public class Cliente
     {
@@ -17,7 +17,7 @@ namespace backend
     }
     public class Contacto
     {
-        public string Nombre { get; set; } 
+        public string Nombre { get; set; }
         public string Correo { get; set; }
     }
 }
