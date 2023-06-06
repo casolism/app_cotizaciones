@@ -5,7 +5,7 @@
         public Material(decimal Margen) : base(Margen)
         {
         }
-        public int Unidad { get; set; }
+        public string Unidad { get; set; }
         public decimal CostoUnitario { get; set; }
         public string CodigoMaterial { get; set; }
         public override string ClasificacionCosto { get => "Materiales"; }

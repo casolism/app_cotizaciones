@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace backend.Dominio
 {
+    [BsonKnownTypes(typeof(Material))]
+    [BsonKnownTypes(typeof(ManoObra))]
+    [BsonKnownTypes(typeof(Viaticos))]
     public abstract class ConceptoCotizacion
     {
         public decimal Margen { get; set; }
