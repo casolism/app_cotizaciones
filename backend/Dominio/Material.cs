@@ -12,5 +12,12 @@
         public override decimal VentaUnitario { get {
                 return CostoUnitario;
             } }
+        public override decimal UnitarioMostrar 
+        {
+            get
+            {
+                return CostoUnitario*(1+Margen);
+            }
+        }
     }
 }

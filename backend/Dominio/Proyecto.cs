@@ -51,6 +51,7 @@ namespace backend.Dominio
             set { }
         }
 
+        public string Condiciones { get; set; }
         public override string ToString()
         {
             return $"Proyecto: {Descripcion}\nCliente:{Cliente.Empresa}\nContacto:{Cliente.Contacto.Nombre} {Cliente.Contacto.Correo}\n" +

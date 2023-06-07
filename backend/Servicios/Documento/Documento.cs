@@ -52,7 +52,7 @@ namespace backend.Servicios.Documento
                 FuncionesPdf.celda(tabla, 12, 1, false, false, false, false, 16f, "", PdfCell.ALIGN_RIGHT, PdfCell.ALIGN_CENTER, "", 10, "N", Font.NORMAL);
                 FuncionesPdf.celda(tabla, 12, 1, false, false, false, false, 16f, "", PdfCell.ALIGN_LEFT, PdfCell.ALIGN_CENTER, "Conforme a su solicitud, me permito presentar a usted la siguiente:", 10, "N", Font.NORMAL);
                 FuncionesPdf.celda(tabla, 12, 1, false, false, false, false, 16f, "", PdfCell.ALIGN_JUSTIFIED_ALL, PdfCell.ALIGN_CENTER, "", 10, "N", Font.NORMAL);
-                FuncionesPdf.celda(tabla, 12, 1, false, false, false, false, 16f, "G", PdfCell.ALIGN_CENTER, PdfCell.ALIGN_MIDDLE, "COTIZACION", 10, "N", Font.NORMAL);
+                FuncionesPdf.celda(tabla, 12, 1, false, false, false, false, 16f, "G", PdfCell.ALIGN_CENTER, PdfCell.ALIGN_MIDDLE, "COTIZACION", 10, "N", Font.BOLD);
                 return tabla;
             }
         }
@@ -74,19 +74,33 @@ namespace backend.Servicios.Documento
                 FuncionesPdf.celda(tabla, 11, 1, true, true, true, true, 22f, "", PdfCell.ALIGN_LEFT, PdfCell.ALIGN_MIDDLE, $"{concepto.Concepto}", 8, "N", Font.NORMAL);
                 FuncionesPdf.celda(tabla, 2, 1, true, true, true, true, 22f, "", PdfCell.ALIGN_CENTER, PdfCell.ALIGN_MIDDLE, $"{unidad}", 8, "N", Font.NORMAL);
                 FuncionesPdf.celda(tabla, 2, 1, true, true, true, true, 22f, "", PdfCell.ALIGN_CENTER, PdfCell.ALIGN_MIDDLE, $"{concepto.Cantidad}", 8, "N", Font.NORMAL);
-                FuncionesPdf.celda(tabla, 2, 1, true, true, true, true, 22f, "", PdfCell.ALIGN_CENTER, PdfCell.ALIGN_MIDDLE, $"{concepto.VentaUnitario.ToString("C")}", 8, "N", Font.NORMAL);
-                FuncionesPdf.celda(tabla, 2, 1, true, true, true, true, 22f, "", PdfCell.ALIGN_CENTER, PdfCell.ALIGN_MIDDLE, $"{concepto.TotalConcepto.ToString("C")}", 8, "N", Font.NORMAL);
+                FuncionesPdf.celda(tabla, 2, 1, true, true, true, true, 22f, "", PdfCell.ALIGN_CENTER, PdfCell.ALIGN_MIDDLE, $"{concepto.UnitarioMostrar.ToString("C")}", 8, "N", Font.NORMAL);
+                FuncionesPdf.celda(tabla, 2, 1, true, true, true, true, 22f, "", PdfCell.ALIGN_CENTER, PdfCell.ALIGN_MIDDLE, $"{concepto.TotalConceptoMostrar.ToString("C")}", 8, "N", Font.NORMAL);
             }
+            FuncionesPdf.celda(tabla, 12, 1, false, false, false, false, 22f, "", PdfCell.ALIGN_RIGHT, PdfCell.ALIGN_MIDDLE, "", 8, "N", Font.BOLD);
+            FuncionesPdf.celda(tabla, 4, 1, false, false, false, false, 22f, "", PdfCell.ALIGN_RIGHT, PdfCell.ALIGN_MIDDLE, "Subtotal", 10, "N", Font.BOLD);
+            FuncionesPdf.celda(tabla, 4, 1, false, false, false, false, 22f, "", PdfCell.ALIGN_RIGHT, PdfCell.ALIGN_MIDDLE, $"{proyecto.SubTotalCotizar.ToString("C")}", 10, "N", Font.BOLD);
+            FuncionesPdf.celda(tabla, 12, 1, false, false, false, false, 22f, "", PdfCell.ALIGN_RIGHT, PdfCell.ALIGN_MIDDLE, "", 8, "N", Font.BOLD);
+            FuncionesPdf.celda(tabla, 4, 1, false, false, false, false, 22f, "", PdfCell.ALIGN_RIGHT, PdfCell.ALIGN_MIDDLE, "IVA", 10, "N", Font.BOLD);
+            FuncionesPdf.celda(tabla, 4, 1, false, false, false, false, 22f, "", PdfCell.ALIGN_RIGHT, PdfCell.ALIGN_MIDDLE, $"{(proyecto.TotalCotizar- proyecto.SubTotalCotizar).ToString("C")}", 10, "N", Font.BOLD);
+            FuncionesPdf.celda(tabla, 12, 1, false, false, false, false, 22f, "", PdfCell.ALIGN_RIGHT, PdfCell.ALIGN_MIDDLE, "", 8, "N", Font.BOLD);
+            FuncionesPdf.celda(tabla, 4, 1, false, false, false, false, 22f, "", PdfCell.ALIGN_RIGHT, PdfCell.ALIGN_MIDDLE, "Total", 10, "N", Font.BOLD);
+            FuncionesPdf.celda(tabla, 4, 1, false, false, false, false, 22f, "", PdfCell.ALIGN_RIGHT, PdfCell.ALIGN_MIDDLE, $"{proyecto.TotalCotizar.ToString("C")}", 10, "N", Font.BOLD);
+            FuncionesPdf.celda(tabla, 20, 1, false, false, false, false, 40f, "", PdfCell.ALIGN_CENTER, PdfCell.ALIGN_TOP, $"({DecimalToString.ConvertirNumeroATexto(proyecto.TotalCotizar)})", 9, "N", Font.NORMAL);
             return tabla;
             }
         }
         public IElement Condiciones {
             get
             {
-                PdfPTable tabla = new PdfPTable(16);
-                tabla.WidthPercentage = 100;
-                FuncionesPdf.celda(tabla, 1, 1, true, true, false, true, 12f, "", PdfCell.ALIGN_CENTER, PdfCell.ALIGN_CENTER, "---", 8, "N", Font.NORMAL);
-                return tabla;
+                Font font = new Font();
+                font.Color = new BaseColor(106, 106, 106);    // Set font color to red
+                font.Size = 9;                // Set font size to 12 points
+                Paragraph p = new Paragraph();
+                p.SetLeading(0.8f,1f);
+                p.Font = font;
+                p.Add(new Chunk($"\n\n{proyecto.Condiciones}"));
+                return p;
             }
         }
     }

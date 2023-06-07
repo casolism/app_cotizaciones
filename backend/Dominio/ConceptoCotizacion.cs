@@ -16,6 +16,7 @@ namespace backend.Dominio
         public int Cantidad { get; set; }
         public string Concepto { get; set; }
         public virtual decimal VentaUnitario { get; set; }
+        public virtual decimal UnitarioMostrar { get; set; }
         public abstract string ClasificacionCosto { get; }
         public ConceptoCotizacion(decimal Margen)
         {
@@ -26,6 +27,13 @@ namespace backend.Dominio
             get
             {
                 return Cantidad * VentaUnitario;
+            }
+        }
+        public virtual decimal TotalConceptoMostrar
+        {
+            get
+            {
+                return Cantidad * UnitarioMostrar;
             }
         }
         public override string ToString()

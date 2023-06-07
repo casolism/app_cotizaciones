@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Configuration;
+
 namespace Cotizaciones
 {
     internal static class Program
@@ -12,6 +14,18 @@ namespace Cotizaciones
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new frmSistemaCotizaciones());
+        }
+        public static IConfiguration InitConfiguration
+        {
+            get
+            {
+                {
+                    var config = new ConfigurationBuilder()
+                       .AddJsonFile("appsettings.json")
+                       .Build();
+                    return config;
+                }
+            }
         }
     }
 }

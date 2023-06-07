@@ -57,4 +57,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="txtCondiciones.Text" xml:space="preserve">
+    <value>Nota:Los precios estan convertidos a pesos mexicanos, cualquier cambio en el dolar se modificara el precio.
+Precios sujetos a cambio sin previo aviso
+60% de anticipo y 40 % contra entrega
+Cualquier concepto no considerado en esta cotización será cobrado de manera independiente.
+Tiempo de entrega:  5 a 8 semanas. (sujeto a disponibilidad)
+Debido a la volatilidad de los precios, la vigencia de la cotizacion, sera de 5 dias habiles.
+
+Agradezco de antemano la atención prestada al presente y me reitero a sus órdenes para cualquier duda
+o comentario</value>
+  </data>
 </root>

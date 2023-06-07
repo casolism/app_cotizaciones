@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NuevoProyecto));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             txtmargen = new TextBox();
@@ -67,12 +68,17 @@
             label6 = new Label();
             gridConceptos = new DataGridView();
             tabPage4 = new TabPage();
+            cmdVistaPrevia = new Button();
+            groupBox1 = new GroupBox();
+            txtCondiciones = new TextBox();
             tabPage5 = new TabPage();
             cmdGuardar = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridConceptos).BeginInit();
+            tabPage4.SuspendLayout();
+            groupBox1.SuspendLayout();
             tabPage5.SuspendLayout();
             SuspendLayout();
             // 
@@ -443,12 +449,45 @@
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(cmdVistaPrevia);
+            tabPage4.Controls.Add(groupBox1);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
             tabPage4.Size = new Size(1060, 692);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Vista previa";
             tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // cmdVistaPrevia
+            // 
+            cmdVistaPrevia.Location = new Point(322, 428);
+            cmdVistaPrevia.Name = "cmdVistaPrevia";
+            cmdVistaPrevia.Size = new Size(148, 36);
+            cmdVistaPrevia.TabIndex = 2;
+            cmdVistaPrevia.Text = "Vista previa";
+            cmdVistaPrevia.UseVisualStyleBackColor = true;
+            cmdVistaPrevia.Click += cmdVistaPrevia_Click;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(txtCondiciones);
+            groupBox1.Location = new Point(26, 24);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(740, 323);
+            groupBox1.TabIndex = 1;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Términos y condiciones";
+            // 
+            // txtCondiciones
+            // 
+            txtCondiciones.Location = new Point(40, 44);
+            txtCondiciones.Multiline = true;
+            txtCondiciones.Name = "txtCondiciones";
+            txtCondiciones.ScrollBars = ScrollBars.Both;
+            txtCondiciones.Size = new Size(645, 211);
+            txtCondiciones.TabIndex = 0;
+            txtCondiciones.Text = resources.GetString("txtCondiciones.Text");
+            txtCondiciones.UseWaitCursor = true;
             // 
             // tabPage5
             // 
@@ -485,6 +524,9 @@
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)gridConceptos).EndInit();
+            tabPage4.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             tabPage5.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -532,5 +574,8 @@
         private TextBox txtDias;
         private Label label17;
         private Button cmdGuardar;
+        private Button cmdVistaPrevia;
+        private GroupBox groupBox1;
+        private TextBox txtCondiciones;
     }
 }
