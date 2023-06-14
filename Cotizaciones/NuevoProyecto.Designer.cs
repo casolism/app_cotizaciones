@@ -37,8 +37,8 @@
             label4 = new Label();
             dateTimePicker1 = new DateTimePicker();
             label3 = new Label();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            txtDescripcion = new TextBox();
+            txtNombreProyecto = new TextBox();
             label2 = new Label();
             label1 = new Label();
             tabPage3 = new TabPage();
@@ -102,8 +102,8 @@
             tabPage1.Controls.Add(label4);
             tabPage1.Controls.Add(dateTimePicker1);
             tabPage1.Controls.Add(label3);
-            tabPage1.Controls.Add(textBox2);
-            tabPage1.Controls.Add(textBox1);
+            tabPage1.Controls.Add(txtDescripcion);
+            tabPage1.Controls.Add(txtNombreProyecto);
             tabPage1.Controls.Add(label2);
             tabPage1.Controls.Add(label1);
             tabPage1.Location = new Point(4, 24);
@@ -165,20 +165,20 @@
             label3.Text = "Fecha";
             label3.Click += label3_Click;
             // 
-            // textBox2
+            // txtDescripcion
             // 
-            textBox2.Location = new Point(190, 82);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(361, 73);
-            textBox2.TabIndex = 8;
+            txtDescripcion.Location = new Point(190, 82);
+            txtDescripcion.Multiline = true;
+            txtDescripcion.Name = "txtDescripcion";
+            txtDescripcion.Size = new Size(361, 73);
+            txtDescripcion.TabIndex = 8;
             // 
-            // textBox1
+            // txtNombreProyecto
             // 
-            textBox1.Location = new Point(190, 43);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(361, 23);
-            textBox1.TabIndex = 7;
+            txtNombreProyecto.Location = new Point(190, 43);
+            txtNombreProyecto.Name = "txtNombreProyecto";
+            txtNombreProyecto.Size = new Size(361, 23);
+            txtNombreProyecto.TabIndex = 7;
             // 
             // label2
             // 
@@ -446,6 +446,8 @@
             gridConceptos.RowTemplate.Height = 25;
             gridConceptos.Size = new Size(943, 403);
             gridConceptos.TabIndex = 0;
+            gridConceptos.CellBeginEdit += gridConceptos_CellBeginEdit;
+            gridConceptos.CellEndEdit += gridConceptos_CellEndEdit;
             // 
             // tabPage4
             // 
@@ -535,8 +537,8 @@
 
         private TabControl tabControl1;
         private TabPage tabPage1;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox txtDescripcion;
+        private TextBox txtNombreProyecto;
         private Label label2;
         private Label label1;
         private TabPage tabPage3;

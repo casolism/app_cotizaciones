@@ -22,6 +22,24 @@ namespace Cotizaciones
     {
         private Proyecto Proyecto;
         IServiciosCRUD serviciosCRUD;
+        private bool ModoEdicion=false;
+        public NuevoProyecto(Proyecto proyecto)
+        {
+            InitializeComponent();
+            Proyecto = proyecto;
+            serviciosCRUD = new ServiciosCRUD(Program.InitConfiguration);
+            cargaDatosProyecto();
+            ModoEdicion = true;
+
+        }
+
+        private void cargaDatosProyecto()
+        {
+            txtNombreProyecto.Text = Proyecto.NombreProyecto;
+            txtDescripcion.Text = Proyecto.Descripcion;
+            txtmargen.Text = Proyecto.Margen.ToString();
+            CargaConceptosCotizacion();
+        }
 
         public NuevoProyecto()
         {
@@ -100,6 +118,11 @@ namespace Cotizaciones
                     VentaUnitario = decimal.Parse(txtCostoUnitario.Text),
                     DiasTrabajo = int.Parse(txtDias.Text)
                 });
+            CargaConceptosCotizacion();
+        }
+
+        private void CargaConceptosCotizacion()
+        {
             gridConceptos.DataSource = null;
             gridConceptos.DataSource = Proyecto.ConceptosCotizacion;
             txtCostoMateriales.Text = Proyecto.TotalMateriales.ToString("0.##");
@@ -110,7 +133,16 @@ namespace Cotizaciones
 
         private void cmdGuardar_Click(object sender, EventArgs e)
         {
-            serviciosCRUD.guardar(Proyecto);
+            if (string.IsNullOrEmpty(Proyecto.Descripcion))
+                MessageBox.Show("Debes proporcionar el nombre del proyecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                if (ModoEdicion)
+                    serviciosCRUD.actualizar(Proyecto);
+                else
+                    serviciosCRUD.guardar(Proyecto);
+                MessageBox.Show("Se ha guardado el proyecto", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void cmdVistaPrevia_Click(object sender, EventArgs e)
@@ -129,6 +161,20 @@ namespace Cotizaciones
             var p = new Process();
             p.StartInfo = new ProcessStartInfo(filePDF) { UseShellExecute = true };
             p.Start();
+        }
+
+        private async void gridConceptos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var concepto = gridConceptos.Rows[e.RowIndex].DataBoundItem as ConceptoCotizacion;
+            Proyecto.ConceptosCotizacion[e.RowIndex] = concepto;
+            gridConceptos.CellEndEdit -= gridConceptos_CellEndEdit;
+            await Task.Delay(1000);
+            CargaConceptosCotizacion();
+            gridConceptos.CellEndEdit += gridConceptos_CellEndEdit;
+        }
+
+        private void gridConceptos_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
         }
     }
 }

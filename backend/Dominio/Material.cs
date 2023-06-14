@@ -11,7 +11,10 @@
         public override string ClasificacionCosto { get => "Materiales"; }
         public override decimal VentaUnitario { get {
                 return CostoUnitario;
-            } }
+            } set { 
+                CostoUnitario = value;
+            }
+        }
         public override decimal UnitarioMostrar 
         {
             get

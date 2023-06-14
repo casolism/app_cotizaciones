@@ -12,6 +12,7 @@ namespace backend.Dominio
         }
 
         public string Id { get; set; }
+        public string NombreProyecto { get; set; }
         public string Descripcion { get; set; }
         public Cliente Cliente { get; set; }
         public DateTime Fecha { get; set; }
@@ -23,7 +24,7 @@ namespace backend.Dominio
         }
         public decimal TotalMateriales {
             get {
-                return ConceptosCotizacion.Where(x=>x.ClasificacionCosto.Equals("Materiales")).Sum(x => x.TotalConcepto) * (1.16m);
+                return ConceptosCotizacion.Where(x=>x.ClasificacionCosto.Equals("Materiales")).Sum(x => x.TotalConceptoMostrar) * (1.16m);
             }
             set { }
         }
@@ -52,6 +53,7 @@ namespace backend.Dominio
         }
 
         public string Condiciones { get; set; }
+        public string Estatus { get; set; }
         public override string ToString()
         {
             return $"Proyecto: {Descripcion}\nCliente:{Cliente.Empresa}\nContacto:{Cliente.Contacto.Nombre} {Cliente.Contacto.Correo}\n" +
